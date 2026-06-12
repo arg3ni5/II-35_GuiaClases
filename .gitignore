@@ -1,1 +1,11 @@
 *.class
+*.java~
+
+*/build/
+/Clase8/dist/
+/Clase9/dist/
+/Arreglos/build
+*.zip
+*.rar
+*.class
+*.jar
