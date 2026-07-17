@@ -701,8 +701,7 @@ public class FormularioContacto extends javax.swing.JFrame {
     private void bBusqueAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBusqueAActionPerformed
         this.estadoB = !estadoB;
         if (estadoB) {
-            int w = INITIAL_WEIGHT + jPanel4.getWidth() + 5;
-            super.setSize(w, INITIAL_HEIGHT + 200);
+            this.pack();
 
             //Llenar lista de contactos//
             //Las siguientes validaciones evitan que se limpie la infomacion en pantalla al esconder la lista
@@ -716,6 +715,7 @@ public class FormularioContacto extends javax.swing.JFrame {
         } else {
             super.setSize(INITIAL_WEIGHT, INITIAL_HEIGHT);
         }
+        setLocationRelativeTo(null);
     }//GEN-LAST:event_bBusqueAActionPerformed
 
     private void textCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textCedulaKeyReleased
@@ -777,32 +777,26 @@ public class FormularioContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_searchTextKeyReleased
 
     private void btnContactarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContactarActionPerformed
-
         lmPendientes = new DefaultListModel<>();
-        lmPendientes.clear();
 
         for (Contacto contacto : libreta.getLibreta()) {
             cola.add(contacto);
-            lmPendientes.addElement(contacto.getNombre() + " " + contacto.getApellidos());
+            lmPendientes.addElement(contacto.getNombreCompleto());
         }
+
         jListColaPendientes.setModel(lmPendientes);
 
-        if (!cola.isEmpty()) {
-            btnSiguiente.setEnabled(true);
-            btnContactar.setEnabled(false);
-        }
+        btnSiguiente.setEnabled(!cola.isEmpty());
+        btnLlamar.setEnabled(!cola.isEmpty());
+        btnContactar.setEnabled(cola.isEmpty());
 
-        String atendiendo = cola.peek().toString();
-        textNombre1.setText(atendiendo);
-        
-//        jListPilaAtendidos.setModel(new DefaultListModel<>());
+        jListPilaAtendidos.setModel(new DefaultListModel<>());
     }//GEN-LAST:event_btnContactarActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        cola.poll(); // Siguiente de la cola
+        contacto = cola.poll(); // Siguiente de la cola (eliminar de la cola)
 
         lmPendientes = new DefaultListModel<>();
-        lmPendientes.clear();
 
         for (Contacto contacto : cola) {
             lmPendientes.addElement(contacto.getNombre() + " " + contacto.getApellidos());
@@ -814,14 +808,28 @@ public class FormularioContacto extends javax.swing.JFrame {
             btnContactar.setEnabled(true);
         }
 
-        Contacto atendiendo = cola.peek();
-        if (atendiendo != null) {
-            textNombre1.setText(atendiendo.toString());
-        }
-        else {
-            textNombre1.setText(atendiendo.toString());
+        
+        if (contacto != null) {
+            txtContacto.setText(contacto.mostrar());
+        } else {
+            txtContacto.setText("NO HAY MAS CONTACTOS");
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void btnLlamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLlamarActionPerformed
+        String atendiendo = cola.peek().mostrar();
+        txtContacto.setText(atendiendo);
+        btnSiguiente.setEnabled(false);
+        
+        btnLlamar.setEnabled(false);
+        btnColgar.setEnabled(true);
+    }//GEN-LAST:event_btnLlamarActionPerformed
+
+    private void btnColgarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColgarActionPerformed
+        btnSiguiente.setEnabled(true);
+        btnLlamar.setEnabled(true);
+        btnColgar.setEnabled(false);
+    }//GEN-LAST:event_btnColgarActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -863,11 +871,14 @@ public class FormularioContacto extends javax.swing.JFrame {
     private javax.swing.JButton bImportar;
     private javax.swing.JButton bLimpiar;
     private javax.swing.JButton bLimpiarBuscar;
+    private javax.swing.JButton btnColgar;
     private javax.swing.JButton btnContactar;
+    private javax.swing.JButton btnLlamar;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.ButtonGroup gMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -877,12 +888,14 @@ public class FormularioContacto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListColaPendientes;
-    private javax.swing.JList<String> jListColaPendientes1;
+    private javax.swing.JList<String> jListPilaAtendidos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JList listaContactos;
