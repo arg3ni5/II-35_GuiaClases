@@ -29,19 +29,21 @@ public class FormularioContacto extends javax.swing.JFrame {
     private Libreta libreta; // Lista de contactos
     private String[] stringContactos; // Arreglo para almacenar los contactos como cadenas
     private String cedula; // Cédula del contacto
-    private Queue<Contacto> cola = new LinkedList<>(); // Cola para manejar contactos
+    private final Queue<Contacto> cola = new LinkedList<>(); // Cola para manejar contactos
     private boolean estadoB = false; // Estado del botón
-    private boolean estadoPanel = true; // Estado del panel
     private int selTipo = 0; // Tipo de selección (mostrar cédulas o todo)
+
+    //List models para la pila y para la cola 
     private DefaultListModel<String> lmPendientes = new DefaultListModel<>();
+    private DefaultListModel<String> lmAtendidos = new DefaultListModel<>();
 
     public FormularioContacto() {
         initComponents();
         archivo = new Archivo();
         libreta = new Libreta();
 
-        setLocationRelativeTo(null);
         super.setSize(INITIAL_WEIGHT, INITIAL_HEIGHT);
+        setLocationRelativeTo(null);
         super.setTitle(TITLE);
     }
 
@@ -340,7 +342,7 @@ public class FormularioContacto extends javax.swing.JFrame {
         panelListaContLayout.setVerticalGroup(
             panelListaContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListaContLayout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -467,7 +469,7 @@ public class FormularioContacto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(bBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -841,7 +843,7 @@ public class FormularioContacto extends javax.swing.JFrame {
     private javax.swing.JTextField textCorreo;
     private javax.swing.JTextField textFechaNac;
     private javax.swing.JTextField textNombre;
-    private javax.swing.JTextField textNombre1;
     private javax.swing.JTextField textTelefono;
+    private javax.swing.JTextArea txtContacto;
     // End of variables declaration//GEN-END:variables
 }
