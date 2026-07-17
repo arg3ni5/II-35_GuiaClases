@@ -59,7 +59,6 @@ public class Contacto {
         return apellidos;
     }
 
-
     /**
      * @param apellidos the apellidos to set
      */

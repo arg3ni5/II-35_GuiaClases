@@ -9,8 +9,6 @@ import archivos.Archivo;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.StringTokenizer;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -21,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class FormularioContacto extends javax.swing.JFrame {
 
-    final int INITIAL_WEIGHT = 450; // Ancho inicial de la ventana
+    final int INITIAL_WEIGHT = 435; // Ancho inicial de la ventana
     final int INITIAL_HEIGHT = 400; // Alto inicial de la ventana
     final String TITLE = "Contactos Taller Torres S.A"; // Título de la ventana
     final String SEARCH = "Buscar"; // Texto de búsqueda por defecto

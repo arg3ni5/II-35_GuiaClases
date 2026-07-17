@@ -2,7 +2,6 @@ package archivos;
 
 import clases.Contacto;
 import java.awt.Desktop;
-import java.awt.HeadlessException;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
