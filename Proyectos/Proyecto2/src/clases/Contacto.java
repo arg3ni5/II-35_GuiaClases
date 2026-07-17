@@ -67,6 +67,10 @@ public class Contacto {
         this.apellidos = apellidos;
     }
 
+    public String getNombreCompleto() {
+        return "[" + cedula + "] " + getNombre() + " " + getApellidos();
+    }
+
     /**
      * @return the fNacimiento
      */
@@ -149,6 +153,10 @@ public class Contacto {
 
     @Override
     public String toString() {
-        return "[" + cedula + "] " + nombre + " " + apellidos + " \n(" + fNacimiento + ") - " + provincia + "," + telefono + "," + correo;
+        return cedula + "," + nombre + "," + apellidos + "," + fNacimiento + "," + provincia + "," + telefono + "," + correo;
+    }
+
+    public String mostrar() {
+        return "[" + cedula + "] " + nombre + " " + apellidos + " \n(" + fNacimiento + ") - " + provincia + "\n" + telefono + "\n" + correo;
     }
 }
